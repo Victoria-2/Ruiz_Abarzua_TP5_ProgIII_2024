@@ -1,3 +1,5 @@
+import AVL.AVLTree;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,21 +31,22 @@ public class ExpresionesMatem {
         calcularButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                resultadoTexto.setText( String.valueOf(realizarCalculoArbolAVL()) ); //de un int lo pasa a un String para que se pueda poner el texto en el resultado
+                resultadoTexto.setText( "El resultado es: "+String.valueOf(realizarCalculo()) ); //de un int lo pasa a un String para que se pueda poner el texto en el resultado
             }
         });
     }
 
     //------------------
 
-    private int realizarCalculoArbolAVL(){
+    private int realizarCalculo(){
+        AVLTree arbol = new AVLTree();
 
         String expresionAOperar = expresionIngresada.toString();
-        for (char valores : expresionAOperar.toCharArray()){
-
+        for (char valor : expresionAOperar.toCharArray()){
+            //tree.root = arbol.insert(tree.root, valor); (?
         }
 
-        int resultado = 0;
+        int resultado = 0; //esto es para que no salte el error, no va
         return resultado;
     }
 }
