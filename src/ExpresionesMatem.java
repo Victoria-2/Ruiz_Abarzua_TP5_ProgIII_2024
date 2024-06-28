@@ -1,4 +1,7 @@
 import AVL.AVLTree;
+import AVL.OperacionesTree;
+import AVL.Nodo;
+
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -14,39 +17,47 @@ public class ExpresionesMatem {
     private final JFrame frame = new JFrame("Ruiz Abarzua - TP5");
 
     //constructor
-    ExpresionesMatem(){
+    ExpresionesMatem() {
         setFrame();
         configurarAcciones();
     }
 
     //basico para inicializacion
-    private void setFrame(){ //lo que hace es generar la ventana con otros valores iniciales
+    private void setFrame() { //lo que hace es generar la ventana con otros valores iniciales
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(panel1);
         frame.setSize(225, 220);
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
     }
-    private void configurarAcciones(){
+
+    private void configurarAcciones() {
         calcularButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                resultadoTexto.setText( "El resultado es: "+String.valueOf(realizarCalculo()) ); //de un int lo pasa a un String para que se pueda poner el texto en el resultado
+                resultadoTexto.setText("El resultado es: " + String.valueOf(realizarCalculo())); //de un int lo pasa a un String para que se pueda poner el texto en el resultado
             }
         });
     }
 
     //------------------
 
-    private int realizarCalculo(){
+    private int realizarCalculo(String expresionIngresada) {
         AVLTree arbol = new AVLTree();
+        Nodo raiz = construirArbol(raiz, expresionIngresada, 0);
+        return evaluarExpresion(raiz);
 
-        String expresionAOperar = expresionIngresada.toString();
+
+
+        /*String expresionAOperar = expresionIngresada.toString();
         for (char valor : expresionAOperar.toCharArray()){
             //tree.root = arbol.insert(tree.root, valor); (?
         }
 
         int resultado = 0; //esto es para que no salte el error, no va
         return resultado;
-    }
+    }*/
 }
+
+
+
