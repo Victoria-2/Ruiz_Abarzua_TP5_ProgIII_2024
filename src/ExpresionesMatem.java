@@ -44,8 +44,7 @@ public class ExpresionesMatem {
 
     private int realizarCalculo(String expresionIngresada) {
         AVLTree arbol = new AVLTree();
-        Nodo raiz = construirArbol(raiz, expresionIngresada, 0);
-        return evaluarExpresion(raiz);
+
 
 
 
