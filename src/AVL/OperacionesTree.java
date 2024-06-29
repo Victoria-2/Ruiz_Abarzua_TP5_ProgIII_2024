@@ -3,51 +3,46 @@ package AVL;
 public class OperacionesTree {
     public Nodo raiz;
 
+    //----------CONSTRUCTOR-------
     public OperacionesTree() {
         this.raiz = null;
     }
-
     public OperacionesTree(String cadena) {
         raiz = crearArbol(cadena);
     }
 
+    //----------OTROS-------
     public void crearNodo(Object valor) {
         raiz = new Nodo(valor);
     }
-
-    public Nodo crearSubArbol(Nodo valor2, Nodo valor1, Nodo operador) { //Estructura del sub arbol
-        operador.izquierda = valor1;
-        operador.derecha = valor2;
-        return operador;
-    }
-
     public boolean arbolVacio() {
         return raiz == null;
     }
 
+    //--------------FORMAS DE IMPRIMIR-----------------//
     private String preOrder(Nodo subArbol, String c) {
-        String cadena = " ";
+        String cadena = "";
         if (subArbol != null) {
-            cadena = c + subArbol.valor.toString() + "\n" + preOrder(subArbol.izquierda, c) + preOrder(subArbol.derecha, c); //A la cadena le agrego el dato que tiene la raiz, con el prefijo del subarbol izquierdo + derecho
+            cadena = c + subArbol.valor.toString() + preOrder(subArbol.izquierda, c) + preOrder(subArbol.derecha, c); //A la cadena le agrego el dato que tiene la raiz, con el prefijo del subarbol izquierdo + derecho
         }
         return cadena;
     }
-
     private String inOrder(Nodo subArbol, String c) {
-        String cadena = " ";
+        String cadena = "";
         if (subArbol != null) {
-            cadena = c + inOrder(subArbol.izquierda, c) + subArbol.valor.toString() + "\n" + inOrder(subArbol.derecha, c);
+            cadena = c + inOrder(subArbol.izquierda, c) + " " + subArbol.valor.toString() + inOrder(subArbol.derecha, c);
+        }
+        return cadena;
+    }
+    private String postOrder(Nodo subArbol, String c) {
+        String cadena = "";
+        if (subArbol != null) {
+            cadena = c + postOrder(subArbol.izquierda, c) + postOrder(subArbol.derecha, c) + subArbol.valor.toString() + " ";
         }
         return cadena;
     }
 
-    private String postOrder(Nodo subArbol, String c) {
-        String cadena = " ";
-        if (subArbol != null) {
-            cadena = c + postOrder(subArbol.izquierda, c) + postOrder(subArbol.derecha, c) + subArbol.valor.toString() + "\n";
-        }
-        return cadena;
-    }
+    //-------------------------------//
 
     public String toString(int a){ //Parametro para poder imprimir las tres formas de arbol binario
         String cadena= " ";
@@ -64,7 +59,6 @@ public class OperacionesTree {
         }
         return cadena;
     }
-
     private int prioridad(char c) { //Verifica las prioridades de los operadores
         int p = 10;
         switch (c) {
@@ -82,34 +76,21 @@ public class OperacionesTree {
         return p;
     }
 
-    private boolean esOperador(char c) {
-        boolean resultado;
-        switch (c) {
-            case '(':
-            case ')':
-            case '+':
-            case '-':
-            case '*':
-            case '/':
-                resultado = true;
-                break;
-            default:
-                resultado = false;
-
-        }
-        return resultado;
+    //--------------ARBOLES-----------------//
+    public Nodo crearSubArbol(Nodo valor2, Nodo valor1, Nodo operador) { //Estructura del sub arbol
+        operador.izquierda = valor1;
+        operador.derecha = valor2;
+        return operador;
     }
-
     private Nodo crearArbol(String cadena) {
-        OperacionesPila pilaOperadores;
-        OperacionesPila pilaExpresiones;
+        OperacionesPila pilaOperadores = new OperacionesPila();
+        OperacionesPila pilaExpresiones = new OperacionesPila();
         Nodo token;
         Nodo operando1;
         Nodo operando2;
         Nodo operador;
-        pilaOperadores = new OperacionesPila();
-        pilaExpresiones = new OperacionesPila();
         char caracterEvaluado;
+
         for (int i = 0; i < cadena.length(); i++) {
             caracterEvaluado = cadena.charAt(i);
             token = new Nodo(caracterEvaluado);
@@ -156,6 +137,24 @@ public class OperacionesTree {
 
     }
 
+    //----------EVALUAR OPERADORES------
+    private boolean esOperador(char c) {
+        boolean resultado;
+        switch (c) {
+            case '(':
+            case ')':
+            case '+':
+            case '-':
+            case '*':
+            case '/':
+                resultado = true;
+                break;
+            default:
+                resultado = false;
+
+        }
+        return resultado;
+    }
     public double evaluarExpresion() {
         return evalua(raiz);
     }
@@ -183,60 +182,4 @@ public class OperacionesTree {
     }
 
 }
-
-
-   /*
-    public int toInt(char c){
-        return c - '0';
-    }
-    public int evaluarExpresion(Nodo nodo){
-        if (nodo == null){
-            return 0;
-        }
-        if (nodo.izquierda == null && nodo.derecha == null){
-            return toInt(nodo.valor);
-        }
-        int izquierda = evaluarExpresion(nodo.izquierda);
-        int derecha = evaluarExpresion(nodo.derecha);
-
-        switch(nodo.valor){
-            case '+':
-                return izquierda + derecha;
-            case '-':
-                return izquierda - derecha;
-            case '*':
-                return izquierda * derecha;
-            case '/':
-                return izquierda / derecha;
-        }
-        return 0;
-    }
-
-
-   /*
-
-    public void InsertarNodo(char valor){ //Inserta un nodo en el arbol
-        this.raiz = insertarRecursivo(this.raiz, valor);
-    }
-
-    public Nodo insertarRecursivo(Nodo nodo, char valor){
-        if (nodo == null){
-            return new Nodo(valor);
-        }
-       return nodo;
-    }
-
-    public int evaluarExpresion(){ //Proceso para evaluar la expresion aritmetica del arbol
-        return evaluarRecursivo(this.raiz);
-    }
-
-    private int evaluarRecursivo(Nodo nodo){ //Recorre y evalua en recursividad
-        if (nodo==null){
-            return 0;
-        }
-        return 0; //Valor de retorno temporal
-    }
-    */
-
-
 
