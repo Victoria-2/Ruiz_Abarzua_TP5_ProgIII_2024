@@ -61,7 +61,7 @@ public class ExpresionesMatem {
                 grafico.setArbol(arbol);
                 JFrame ventana = new JFrame();
                 ventana.getContentPane().add(grafico);
-                ventana.setSize(800,300);
+                ventana.setSize(800,560);
                 ventana.setVisible(true);
             }
         });

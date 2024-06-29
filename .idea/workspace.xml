@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c60681b-5a65-4509-9498-a96a38a60e55" name="Changes" comment="Finalizacion grafica, acepta errores">
-      <change afterPath="$PROJECT_DIR$/src/grafico/Graficar.java" afterDir="false" />
+    <list default="true" id="1c60681b-5a65-4509-9498-a96a38a60e55" name="Changes" comment="Finalizacion graficos con nodos">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AVL/Nodo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/arbolBinario/Nodo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AVL/OperacionesPila.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/arbolBinario/OperacionesPila.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AVL/OperacionesTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/arbolBinario/OperacionesTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AVL/Pila.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/arbolBinario/Pila.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ExpresionesMatem.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/grafico/ExpresionesMatem.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ExpresionesMatem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grafico/ExpresionesMatem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/grafico/ExpresionesMatem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/grafico/ExpresionesMatem.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +115,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719700031291</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Finalizacion graficos con nodos">
+      <option name="closed" value="true" />
+      <created>1719704184715</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1719704184715</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -148,7 +149,8 @@
     <MESSAGE value="extension de 'realizarCalculo()'" />
     <MESSAGE value="pruebas con main" />
     <MESSAGE value="Finalizacion grafica, acepta errores" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finalizacion grafica, acepta errores" />
+    <MESSAGE value="Finalizacion graficos con nodos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finalizacion graficos con nodos" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
