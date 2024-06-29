@@ -11,11 +11,11 @@ public class OperacionesTree {
         raiz = crearArbol(cadena);
     }
 
-    public void crearNodo(char valor) {
+    public void crearNodo(Object valor) {
         raiz = new Nodo(valor);
     }
 
-    public Nodo crearSubArbol(Nodo valor2, Nodo valor1, Nodo operador) {
+    public Nodo crearSubArbol(Nodo valor2, Nodo valor1, Nodo operador) { //Estructura del sub arbol
         operador.izquierda = valor1;
         operador.derecha = valor2;
         return operador;
@@ -25,15 +25,15 @@ public class OperacionesTree {
         return raiz == null;
     }
 
-    private String preOrder(Nodo subArbol, char c) {
+    private String preOrder(Nodo subArbol, String c) {
         String cadena = " ";
         if (subArbol != null) {
-            cadena = c + subArbol.valor.toString() + "\n" + preOrder(subArbol.izquierda, c) + preOrder(subArbol.derecha, c);
+            cadena = c + subArbol.valor.toString() + "\n" + preOrder(subArbol.izquierda, c) + preOrder(subArbol.derecha, c); //A la cadena le agrego el dato que tiene la raiz, con el prefijo del subarbol izquierdo + derecho
         }
         return cadena;
     }
 
-    private String inOrder(Nodo subArbol, char c) {
+    private String inOrder(Nodo subArbol, String c) {
         String cadena = " ";
         if (subArbol != null) {
             cadena = c + inOrder(subArbol.izquierda, c) + subArbol.valor.toString() + "\n" + inOrder(subArbol.derecha, c);
@@ -41,7 +41,7 @@ public class OperacionesTree {
         return cadena;
     }
 
-    private String postOrder(Nodo subArbol, char c) {
+    private String postOrder(Nodo subArbol, String c) {
         String cadena = " ";
         if (subArbol != null) {
             cadena = c + postOrder(subArbol.izquierda, c) + postOrder(subArbol.derecha, c) + subArbol.valor.toString() + "\n";
@@ -49,7 +49,23 @@ public class OperacionesTree {
         return cadena;
     }
 
-    private int prioridad(char c) {
+    public String toString(int a){ //Parametro para poder imprimir las tres formas de arbol binario
+        String cadena= " ";
+        switch(a){
+            case 0:
+                cadena=preOrder(raiz, cadena);
+                break;
+            case 1:
+                cadena=inOrder(raiz, cadena);
+                break;
+            case 2:
+                cadena=postOrder(raiz, cadena);
+                break;
+        }
+        return cadena;
+    }
+
+    private int prioridad(char c) { //Verifica las prioridades de los operadores
         int p = 10;
         switch (c) {
             case '/':
@@ -76,8 +92,10 @@ public class OperacionesTree {
             case '*':
             case '/':
                 resultado = true;
+                break;
             default:
                 resultado = false;
+
         }
         return resultado;
     }

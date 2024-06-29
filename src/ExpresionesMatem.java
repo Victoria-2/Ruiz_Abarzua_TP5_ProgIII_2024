@@ -1,6 +1,7 @@
-import AVL.AVLTree;
 import AVL.OperacionesTree;
 import AVL.Nodo;
+import AVL.OperacionesPila;
+import AVL.Pila;
 
 
 import javax.swing.*;
@@ -42,8 +43,8 @@ public class ExpresionesMatem {
 
     //------------------
 
-    private int realizarCalculo(String expresionIngresada) {
-        AVLTree arbol = new AVLTree();
+    private int realizarCalculo() {
+ /*       AVLTree arbol = new AVLTree();
 
 
 
@@ -56,7 +57,8 @@ public class ExpresionesMatem {
         int resultado = 0; //esto es para que no salte el error, no va
         return resultado;
     }*/
-}
+        return 0;
+    }} //Lo puse solo para que no salte error
 
 
 

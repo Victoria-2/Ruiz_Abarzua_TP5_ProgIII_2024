@@ -9,9 +9,9 @@ public class OperacionesPila {
 
     public void insertar(Nodo elemento){
         Pila nuevo;
-        nuevo = new Pila(elemento);
+        nuevo = new Pila(elemento); //Primer token para la pila
         nuevo.siguiente=tope;
-        tope=nuevo;
+        tope=nuevo; //Nuevo nodo que creamos
     }
 
     public boolean pilaVacia(){ //Metodo para verificar que la pila esta vacia
@@ -24,7 +24,7 @@ public class OperacionesPila {
 
     public Nodo quitar(){
         Nodo aux= null;
-        if (!pilaVacia()){
+        if (!pilaVacia()){ //Mientras la pila no esta vacia podemos sacar el valor
             aux=tope.valor;
             tope=tope.siguiente;
         }
