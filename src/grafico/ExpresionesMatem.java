@@ -1,4 +1,6 @@
-import AVL.OperacionesTree;
+package grafico;
+
+import arbolBinario.OperacionesTree;
 
 
 import javax.swing.*;
@@ -14,13 +16,14 @@ public class ExpresionesMatem {
     private JButton preOrderButton;
     private JButton inOrderButton;
     private JButton postOrderButton;
+    private JButton visualizarButton;
 
     private final JFrame frame = new JFrame("Ruiz Abarzua - TP5");
     OperacionesTree arbol;
     boolean excepcion;
 
     //constructor
-    ExpresionesMatem() {
+    public ExpresionesMatem() {
         setFrame();
         configurarAcciones();
     }
@@ -39,13 +42,27 @@ public class ExpresionesMatem {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
+                    excepcion = false;
                     resultadoTexto.setText("El resultado es: " + String.valueOf(realizarCalculo()));
                 } catch (NumberFormatException exception){
                     excepcion = true;
                     resultadoTexto.setText("Ingrese una expresion valida sin espacios!");
-                }
+                }  catch (NullPointerException exception){
+                    excepcion = true;
+                    resultadoTexto.setText("Recuerde ingresar una expresion y presionar 'calcular'!");
+            }
 
-
+            }
+        });
+        visualizarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Graficar grafico = new Graficar();
+                grafico.setArbol(arbol);
+                JFrame ventana = new JFrame();
+                ventana.getContentPane().add(grafico);
+                ventana.setSize(800,300);
+                ventana.setVisible(true);
             }
         });
 

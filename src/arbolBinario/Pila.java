@@ -1,4 +1,4 @@
-package AVL;
+package arbolBinario;
 
 public class Pila {
     Nodo valor;

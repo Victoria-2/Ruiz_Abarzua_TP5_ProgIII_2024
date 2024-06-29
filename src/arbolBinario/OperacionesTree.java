@@ -1,4 +1,4 @@
-package AVL;
+package arbolBinario;
 
 public class OperacionesTree {
     public Nodo raiz;
