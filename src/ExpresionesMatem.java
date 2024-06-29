@@ -1,7 +1,4 @@
 import AVL.OperacionesTree;
-import AVL.Nodo;
-import AVL.OperacionesPila;
-import AVL.Pila;
 
 
 import javax.swing.*;
@@ -14,8 +11,13 @@ public class ExpresionesMatem {
     private JLabel resultadoTexto;
     private JLabel ingresarExpresionTexto;
     private JPanel panel1;
+    private JButton preOrderButton;
+    private JButton inOrderButton;
+    private JButton postOrderButton;
 
     private final JFrame frame = new JFrame("Ruiz Abarzua - TP5");
+    OperacionesTree arbol;
+    boolean excepcion;
 
     //constructor
     ExpresionesMatem() {
@@ -27,7 +29,7 @@ public class ExpresionesMatem {
     private void setFrame() { //lo que hace es generar la ventana con otros valores iniciales
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(panel1);
-        frame.setSize(225, 220);
+        frame.setSize(500, 250);
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
     }
@@ -36,29 +38,56 @@ public class ExpresionesMatem {
         calcularButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                resultadoTexto.setText("El resultado es: " + String.valueOf(realizarCalculo())); //de un int lo pasa a un String para que se pueda poner el texto en el resultado
+                try{
+                    resultadoTexto.setText("El resultado es: " + String.valueOf(realizarCalculo()));
+                } catch (NumberFormatException exception){
+                    excepcion = true;
+                    resultadoTexto.setText("Ingrese una expresion valida sin espacios!");
+                }
+
+
+            }
+        });
+
+        preOrderButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(excepcion){
+                    resultadoTexto.setText("No se puede calcular sin una expresión valida");
+                } else{
+                    resultadoTexto.setText("La expresión Pre Order es:" + arbol.toString(0));
+                }
+            }
+        });
+        inOrderButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(excepcion){
+                    resultadoTexto.setText("No se puede calcular sin una expresión valida");
+                } else{
+                    resultadoTexto.setText("La expresión Pre Order es:" + arbol.toString(1));
+                }
+            }
+        });
+        postOrderButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(excepcion){
+                    resultadoTexto.setText("No se puede calcular sin una expresión valida");
+                } else{
+                    resultadoTexto.setText("La expresión Pre Order es:" + arbol.toString(2));
+                }
             }
         });
     }
 
     //------------------
 
-    private int realizarCalculo() {
- /*       AVLTree arbol = new AVLTree();
-
-
-
-
-        /*String expresionAOperar = expresionIngresada.toString();
-        for (char valor : expresionAOperar.toCharArray()){
-            //tree.root = arbol.insert(tree.root, valor); (?
-        }
-
-        int resultado = 0; //esto es para que no salte el error, no va
-        return resultado;
-    }*/
-        return 0;
-    }} //Lo puse solo para que no salte error
+    private double realizarCalculo() {
+        arbol = new OperacionesTree(expresionIngresada.getText());
+        return arbol.evaluarExpresion();
+    }
+}
 
 
 
