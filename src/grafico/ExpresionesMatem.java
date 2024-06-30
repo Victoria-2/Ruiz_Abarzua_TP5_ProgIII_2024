@@ -57,8 +57,15 @@ public class ExpresionesMatem {
         visualizarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if (arbol == null){
+                    resultadoTexto.setText("Recuerde ingresar una expresion y presionar 'calcular'!");
+                }
                 Graficar grafico = new Graficar();
-                grafico.setArbol(arbol);
+                try{
+                    grafico.setArbol(arbol);
+                } catch (NullPointerException exception){
+                    resultadoTexto.setText("Recuerde ingresar una expresion y presionar 'calcular'!");
+                }
                 JFrame ventana = new JFrame();
                 ventana.getContentPane().add(grafico);
                 ventana.setSize(800,560);
